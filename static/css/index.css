@@ -1,0 +1,22 @@
+* {
+    scroll-behavior: smooth;
+    font-family: 'Gabriela';
+    overflow-x: hidden;
+}
+body{
+    background-color: #000000;
+    background: url(/images/—Pngtree—abstract\ metallic\ blue\ black\ frame_1155756.png);   
+}
+
+nav {
+    background: rgb(45, 2, 38);
+    margin-bottom: 2rem;
+    border: none;
+    transition: background 0.9s
+}
+
+
+
+h2{
+    color:rgb(38, 235, 20);
+}
