@@ -13,18 +13,11 @@ class Profile(models.Model):
     def save_profile(self):
         self.save() 
 
-    def update_profile(self):
-        self.save()
-
+   
     def delete_profile(self):
         self.delete()
 
-    @classmethod
-    def filter_by_id(cls, id):
-        profile = Profile.objects.filter(user = id).first()
-        return profile
-
-
+   
     def _str_(self):
         return self.user.username
 
