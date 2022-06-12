@@ -131,3 +131,10 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+
+cloudinary.config( 
+  cloud_name = "dyekraqxm", 
+  api_key = "752266243846236", 
+  api_secret = "_3On6b0yuNU3Viqoc6dqjLCtM_s" 
+)
