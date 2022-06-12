@@ -1,5 +1,22 @@
 {% extends "all-atawards/base.html" %}
 {% block content %}
+
+{% load bootstrap4%}
+{% load static %}
+
+{% block styles %}
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="../../../static/css/index.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css?family=Gabriela" rel="stylesheet">
+   
+
+  {% endblock %}
+
+
+
 <style>
     .card {
         background: #fff none repeat scroll 0 0;
@@ -24,10 +41,10 @@
 <section class="profile container">
     <div class=" mt-5">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="card">
                     {% if profile.profile_photo %}
-                    <img src="{{profile.profile_photo.url}}" alt="" class="card-img-top">
+                    <img src="{{profile.profile_photo.url}}" alt="" class="card-img-top" height="300" width="300" />
                     {%else%}
                     <img src="https://e7.pngegg.com/pngimages/219/352/png-clipart-nadona-user-profile-computer-icons-avatar-account-blue-heroes.png"
                         class="card-img-top" alt="My profile picture">
@@ -56,7 +73,7 @@
     <br>
     <div class="col-md-3">
         <form action="/upload/project/">
-            <input type="submit" style=" background :#E46B3F;"value="Post a project" />
+            <input type="submit" class="btn btn-primary btn-lg" style=" background :#00AEDE;"value="Post a project" />
         </form>
     </div>
         <div class = "" data-toggle ="modal" data-target="#showPicModal">
@@ -92,16 +109,42 @@
 </section>
 
 
-
-
 <div class="details">
     <div class="first">
-      <h3>{{user.username}}</h3>
+        <h5 class="text-light" >{{user.username}}</h5>
       {% if request.user is user %}  {% endif %}
       <div>
-        <a href="{%url 'update_profile' user.id %}" class="btn btn-outline-primary mb-4">
-          Edit Profile
+        <a href="{%url 'update_profile' user.id %}" class="btn btn-secondary btn-lg">
+          Update Profile
         </a>
       </div>
     </div>
+
+
+
+    <h3 class="post-title text-center" id="ig-text">MY &nbsp; POSTED &nbsp;PROJECTS:</h3>
+    <hr style="height:3px;border-width:1;color:#E46B3F;background-color:#C4402A">
+    <div class="container-fluid">
+        <div class="row">
+
+            {% for project in project %}
+            <div class="col-md-4" id="post-image">
+
+                    <div class="card mb-4">
+                        <h5 class="card-title text-center"><b>Title: </b>{{project.name}}</h5>
+                        <img src="{{ project.image.url }}" class="img-responsive" alt="Image" width="400"/>
+                    </div>
+                    </p>
+            </div>
+            {% empty %}
+
+            <div class="col-md-4">
+                <div class="alert alert-info" role="alert">
+                    No posts!
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+           {% endfor %}  
 {% endblock %} 
