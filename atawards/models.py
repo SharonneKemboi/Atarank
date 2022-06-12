@@ -55,3 +55,15 @@ class Project(models.Model):
 
     def str(self):
         return self.user.username
+
+
+class Review(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    design_review = models.IntegerField(default=0, blank=True, null=True)
+    usability_review = models.IntegerField(default=0, blank=True, null=True)
+    content_review = models.IntegerField(default=0, blank=True, null=True)
+    avg_review = models.IntegerField(default=0, blank=True, null=True)
+
+    def __str__(self):
+        return self.user.username
