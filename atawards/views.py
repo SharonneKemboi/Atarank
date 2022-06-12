@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http  import HttpResponse,HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import Profile,Project
+from .models import Profile,Project,Review
 from .forms import MyProjectForm,UpdateProfileForm,ProfileForm
 
 
@@ -84,3 +84,39 @@ def search_project(request):
     else:
         message = 'Not found'
         return render(request, 'search_result.html', {'danger': message})
+
+
+
+def project_details(request, project_id):
+    project = Project.objects.get(id=project_id)
+    reviews = Review.objects.filter(project = project)
+
+    return render(request, "project_details.html", {"project": project,"reviews":reviews})    
+
+
+
+@login_required(login_url='/accounts/login/')
+def review_project(request,id):
+    if request.method == 'POST':
+        project = Project.objects.get(id=id)
+        current_user = request.user
+
+        design_review = request.POST['design']
+        content_review = request.POST['content']
+        usability_review = request.POST['usability']
+
+
+        Review.objects.create(
+            project=project,
+            user=current_user,
+            design_review=design_review,
+            usability_review=usability_review,
+            content_review=content_review,
+            avg_review=round((float(design_review)+float(usability_review)+float(content_review))/3,2),
+        )
+        return render(request,'project_details.html',{"project":project})
+
+    else:
+        project = Project.objects.get(id=id)
+
+        return render(request,'project_details.html',{"project":project})
