@@ -1,7 +1,13 @@
 from rest_framework import serializers
 from .models import Profile,Project
 
-class MerchSerializer(serializers.ModelSerializer):
+class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ('user','profile_photo', 'bio', 'contact')
+        fields = ('user', 'bio', 'contact')
+
+
+class ProjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Project
+        fields = ('link','name','description')           

@@ -11,4 +11,6 @@ urlpatterns=[
     path('search/',views.search_project, name='search.post'),
     path("project/<int:project_id>/", views.project_details, name="project_details"),
     path('review//<int:id>/',views.review_project, name='review.project'),
+    path('api/projects/', views.ProjectList.as_view()),
+    path('api/profiles/',views.ProfileList.as_view())
 ]
