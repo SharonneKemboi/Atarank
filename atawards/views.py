@@ -12,7 +12,7 @@ from rest_framework.response import Response
 
 
 # Create your views here.
-
+@login_required(login_url='/accounts/login/')
 def index(request):
 
     myproj =Project.objects.all().order_by('-id')
@@ -37,9 +37,9 @@ def upload(request):
             myproj =form.save(commit=False)
             myproj.save()
             return redirect('/')
-        else:
-            form=MyProjectForm()
-        return render(request,"my_project.html",{'form':form})          
+    else:
+     form=MyProjectForm()
+    return render(request,"my_project.html",{'form':form})          
 
 
 

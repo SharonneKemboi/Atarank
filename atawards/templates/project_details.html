@@ -82,7 +82,7 @@
 
                 </tbody>
               </table>
-              <button class="btn btn-warning btn-sm" type="submit">Review</button>
+              <button class="btn btn-warning btn-lg" type="submit">Review</button>
             </form>
             
           </div>
@@ -105,17 +105,20 @@
             <div class="col-md-12">
             {% for review in reviews %}
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-md-2">
                 <p>Voter: {{review.user.username}}</p>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-2">
                 <p>Design: {{review.design_review}}</p>   
               </div>
-              <div class="col-md-3">
+              <div class="col-md-2">
                 <p>Content: {{review.content_review}}</p>
               </div>
               <div class="col-md-3">
                 <p>Usability:{{review.usability_review}}</p>
+              </div>
+              <div class="col-md-2">
+                <p>Average:{{rate.avg_rate}}</p>
               </div>
             </div>
             {% empty %}
