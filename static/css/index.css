@@ -5,7 +5,7 @@
 }
 body{
     background-color: #000000;
-    background: url(/images/—Pngtree—abstract\ metallic\ blue\ black\ frame_1155756.png);   
+    background: url('/images/—Pngtree—abstract\ metallic\ blue\ black\ frame_1155756.png');   
 }
 
 nav {
@@ -18,5 +18,5 @@ nav {
 
 
 h2{
-    color:rgb(38, 235, 20);
+    color:rgb(229, 240, 228);
 }
