@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http  import HttpResponse
+from django.http  import HttpResponse,HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import Profile,Project
-from .forms import MyProjectForm,UpdateProfileForm
+from .forms import MyProjectForm,UpdateProfileForm,ProfileForm
 
 
 # Create your views here.
@@ -49,7 +49,38 @@ def update_profile(request,id):
 
                 profile = form.save(commit=False)
                 profile.save()
-                return redirect('profile' ,username=user.username) 
+                return redirect('profile') 
 
-    ctx = {"form":form}
-    return render(request, 'update_profile.html', ctx)    
+    mfm = {"form":form}
+    return render(request, 'update_profile.html', mfm)    
+
+
+
+@login_required(login_url='/accounts/login/')
+def add_profile(request):
+    current_user = request.user
+    title = "Add Profile"
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = current_user
+            profile.save()
+        return HttpResponseRedirect('/')
+
+    else:
+        form = ProfileForm()
+    return render(request, 'add_profile.html', {"form": form, "title": title})
+
+
+@login_required(login_url='/accounts/login/')
+def search_project(request):
+    if 'search' in request.GET and request.GET['search']:
+        search_term = request.GET.get('search').lower()
+        images = Project.search_project_name(search_term)
+        message = f'{search_term}'
+
+        return render(request, 'search_result.html', {'found': message, 'images': images})
+    else:
+        message = 'Not found'
+        return render(request, 'search_result.html', {'danger': message})

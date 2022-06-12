@@ -6,4 +6,6 @@ urlpatterns=[
     path('profile/', views.profile, name='profile'),
     path('upload/project/', views.upload, name = "upload"),
     path('update_profile/<int:id>',views.update_profile, name='update_profile'),
+    path('add_profile/',views.add_profile,name = 'add_profile'),
+    path('search/',views.search_project, name='search.post'),
 ]
