@@ -53,7 +53,11 @@
         </div>
     </div>
     <br>
-    <div class="col-md-12">
+    <div class="col-md-3">
+        <form action="/upload/project/">
+            <input type="submit" style=" background :#E46B3F;"value="Post a project" />
+        </form>
+    </div>
         <div class = "" data-toggle ="modal" data-target="#showPicModal">
             <button class="btn btn-info  btn-lg">Add Profile</button>
         </div>
@@ -83,6 +87,29 @@
             </div>
           </div>
         </div>
+    </div>
 </section>
 
+
+
+<style>
+    .details{
+        float:right;
+        margin-right: 50vw;
+        margin-top: -80vh;
+    }
+    h3{
+        color:#FFFF;  
+    }
+</style>
+<div class="details">
+    <div class="first">
+      <h3>{{user.username}}</h3>
+      {% if request.user is user %}  {% endif %}
+      <div>
+        <a href="{%url 'update_profile' user.id %}" class="btn btn-outline-primary mb-4">
+          Edit Profile
+        </a>
+      </div>
+    </div>
 {% endblock %} 
