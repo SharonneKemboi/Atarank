@@ -47,6 +47,7 @@
                         <h6>Joined on:<br> <span class="badge rounded-pill bg-secondary text-white">
                                 {{ user.date_joined|date }} </span></h6>
 
+                                <p class="text-sm-centre">Contact:{{profile.contact}}</p>
                     </div>
                 </div>
             </div>
@@ -92,16 +93,7 @@
 
 
 
-<style>
-    .details{
-        float:right;
-        margin-right: 50vw;
-        margin-top: -80vh;
-    }
-    h3{
-        color:#FFFF;  
-    }
-</style>
+
 <div class="details">
     <div class="first">
       <h3>{{user.username}}</h3>
