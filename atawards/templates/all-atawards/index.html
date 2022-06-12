@@ -1,13 +1,69 @@
 {%extends 'all-atawards/base.html'%}
+{% load bootstrap4%}
+{% load static %}
 
+{% block styles %}
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="../../../static/css/index.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css?family=Gabriela" rel="stylesheet">
+   
 
-
+  {% endblock %}
 
 {% block content %}
 {{block.super}}
 
 <body>
-    <h2 class="text-center">Atarank Awards...</h2>  
+  <div  class="slider">
+    <div class="load">
+
+    </div>
+    <div class="content">
+      <div class="principal">
+        <h1>ATAWARDS ATARANK</h1>
+              <p>"A" class Project Ranker and Reviewer</p>
+
+              <br><br>
+                <h4 class="text-warning"><u>DESIGN</u>  &nbsp; <u>CONTENT</u> &nbsp;<u>USABILITY</u></h4>
+          </div>
+      </div>
+
+  </div>
+  </div>
+
+  <h2 class="text-center" id="myproject-title">Atarank Awards...</h2>
+ 
+
+    <div class="container-fluid">
+        <div class="row">
+            {% for proj in myproj %}
+            <div class="col-md-4 " >
+              <div class="card-group" >
+                <div class="card"  style="border:2px solid #0c0c0c; margin:5px; ">
+                  <a href="{% url 'project_details' proj.id %}">
+                   
+                  <img class="card-img-top" src="{{proj.image.url}}" alt="Card image cap" height="300" width="300"/>
+                 </a>
+                  <div class="card-body">
+                  <h5 class="card-title text-center"><b>Name: </b>{{proj.name}}</h5>
+                  <p class="card-text text-center"><b>Description:</b>{{proj.description}}</p>
+
+
+                  <a href="{{proj.link}}" class="btn btn-info btn-centered">Go to Repo</a>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted"><b>Date Posted:{{proj.date}}</b></small>
+                </div>
+              </div>
+          </div>
+          </div>
+          {% endfor %}
+        </div>
+        </div>
+      </div>
 </body>
 
 
