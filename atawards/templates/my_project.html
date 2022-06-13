@@ -1,3 +1,4 @@
+{%extends 'all-atawards/base.html'%}
 {% load static %}
 {% load bootstrap4 %}
 
@@ -8,27 +9,35 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css?family=Gabriela" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/form.css'%}">
+    
+ 
+   
    
 
   {% endblock %}
 
 {% block content %}
-<style>
-    input{
-        height:10vh;
-        margin:1vw;
-    }
-</style>
-<div class="col-md-6 text-light" >
-    <div id="regis">
-        <div class="form-data"style="border:10px red;">
+
+
+<div class="col-sm-6 form-container">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class=" text-success" >upload Your Project here</h1>
+           
+           
+            
+        </div>
+    </div>
+        <div class="form-data text-light mx-6" >
             <form action="{%url 'upload'%}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                <h2 class="intro text-dark">Upload my project</h2>
+                <h2 class="intro text-light">Upload my project</h2>
                 {% bootstrap_form form%}
-                <button class="btn btn-info" type="submit">Upload</button>
+                <button class="btn btn-info bg-success" type="submit">Upload</button>
             </form>
         </div>
+    </div>
     </div>
     </div>
 {% endblock %}

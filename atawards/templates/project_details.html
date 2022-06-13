@@ -1,14 +1,16 @@
 {% extends "all-atawards/base.html" %}
 {% block content %}
 
-<h1 class="text-center m-0 text-light">Project</h1>
-<hr style="height:3px;border-width:1;color:#E46B3F;background-color:#C4402A">
+
+
+<h1 class="text-center text-light" style="margin-top: 5%;">Project</h1>
+<hr style="height:3px;border-width:1;background-color:#4cfb12">
 
 
 
 {% if project.image %}
 <section class="single-top-header" 
- style="height: 70vh; width:80vw; margin-left:120px; background-repeat: no-repeat;background-size: cover;background-position: center; 
+ style="height: 70vh; width:80vw; margin-left:120px; margin-top:2%; background-repeat: no-repeat;background-size: cover;background-position: center; 
  background-image: url({{project.image.url}})">
     {% else %}
     <section class="single-top-header">
@@ -20,8 +22,7 @@
                        {% if project.user.profile_pic_path %}
                        <img src="{{ user.profile_pic_path }}" alt="author" class="aimg mt-3">
                        {% else %}
-                       <!-- <img src="https://img.icons8.com/fluency/48/000000/user-male-circle.png" alt="author"
-                           class="aimg mt-3 mb-3" height="300" width="300"> -->
+                      
                        {% endif %}
 
                 </div>
@@ -34,7 +35,7 @@
             <div class="row">
                 
                 <div class="col-md-8">
-                    <h2 class="card-title ">Title:&nbsp;{{project.name}}</h2>
+                    <h2 class="card-title text-success ">Title:&nbsp;{{project.name}}</h2>
                     <p class="card-text text-light"><b>Description:&nbsp;</b>{{project.description}}</p>
                     <P class="card-text text-light">Category:&nbsp;{{project.category}}</P>
                     <P class="card-text text-light">Location:&nbsp;{{project.location}}</P>
@@ -43,10 +44,10 @@
 
 
                         <div class="author mt-5 mb-5">
-                            <p class="user text-warning">
+                            <p class="user text-success">
                                 By &#126; {{user.username}}
-                                <P class="user text-warning">Date Posted:&nbsp;<em>{{project.date}}</em></P>
-                                <a href="{{project.link}}" class="btn btn-info btn-centered">Checkout Site</a>
+                                <P class="user text-success">Date Posted:&nbsp;<em>{{project.date}}</em></P>
+                                <a href="{{project.link}}" class="btn btn-info btn-centered bg-success">Checkout Site</a>
                             </p>
 
                             </div>
@@ -62,7 +63,7 @@
                           color:white;
                       }
                   </style>
-            <table class="table table-dark ">
+            <table class="table table-black ">
                 <thead>
                   <tr>
 
@@ -82,7 +83,7 @@
 
                 </tbody>
               </table>
-              <button class="btn btn-warning btn-lg" type="submit">Review</button>
+              <button class="btn btn-success btn-lg" type="submit">Review</button>
             </form>
             
           </div>
@@ -92,7 +93,7 @@
 
         </div> 
         <br>
-        <hr style="height:3px;border-width:1;color:#E46B3F;background-color:#C4402A">
+        <hr style="height:3px;border-width:1;color:#E46B3F;background-color:#31ef0f">
        <style>
            th{
                color:black;
@@ -100,13 +101,13 @@
        </style>
 
         <div class="container-fluid text-light text-centre ">
-            <h2 class="text-center text-warning">This Project's Reviews</h2>
+            <h2 class="text-center text-light">This Project's Reviews</h2>
             <br>
             <div class="col-md-12">
             {% for review in reviews %}
             <div class="row">
               <div class="col-md-2">
-                <p>Voter: {{review.user.username}}</p>
+                <p>Reviewer:  {{review.user.username}}</p>
               </div>
               <div class="col-md-2">
                 <p>Design: {{review.design_review}}</p>   
