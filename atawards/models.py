@@ -1,25 +1,33 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User,related_name = "profile",on_delete=models.CASCADE,)
     profile_photo = CloudinaryField('image')
     bio = models.CharField(max_length=500, blank=True, null=True)
     contact = models.CharField(max_length=50, blank=True, null=True)
 
 
-    def save_profile(self):
-        self.save() 
+    
+    def __str__(self):
+        return f'{self.user.username} Profile'
+        
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
 
-   
-    def delete_profile(self):
-        self.delete()
-
-   
-    def _str_(self):
-        return self.user.username
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, **kwargs):
+        instance.profile.save()
+    
+    @classmethod
+    def search_user(cls,name):
+        return User.objects.filter(username__icontains = name)
 
 class Project(models.Model):
     image = CloudinaryField('image')
@@ -57,6 +65,13 @@ class Review(models.Model):
     usability_review = models.IntegerField(default=0, blank=True, null=True)
     content_review = models.IntegerField(default=0, blank=True, null=True)
     avg_review = models.IntegerField(default=0, blank=True, null=True)
+
+
+    def save_review(self):
+        self.save()
+
+    def delete_review(self):
+        self.delete()
 
     def __str__(self):
         return self.user.username
