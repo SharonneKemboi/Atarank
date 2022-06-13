@@ -12,14 +12,15 @@
 
 <div class="box" id="profile-text">
     <div class="text-center">
-    <div class="title">Add Your Atarank Profile</div>
-    <hr>
-    <div class="guide">Please provide an image for your profile picture, a short description of yourself and/or what you do (bio), your location, email address and a link to your portfolio.</div>
+    <div class="title" style="color:rgb(230, 206, 21); font-size: 3rem;">Add Your Atarank Profile</div>
+    <hr class="color" style="color:green; border: 4px solid ;">
+    <div class="guide">Please provide an image for your profile picture and a short description of yourself .</div>
     </div>
-    <form action="{%url 'create_profile'%}" method="post" enctype="multipart/form-data">
+    
+    <form action="{%url 'update_profile' user.id%}" method="POST" enctype="multipart/form-data" style="margin: 20%; margin-top:1% ;">
         {%csrf_token%}    
         {% bootstrap_form form%}
-        <input type="submit" class="btn btn-dark " value="Create Profile">
+        <input type="submit" class="btn btn-success " value="Create Profile">
     </form>
 </div>
 {% endblock %}
