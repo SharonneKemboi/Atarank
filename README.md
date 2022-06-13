@@ -8,7 +8,7 @@
 
 ### Screenshot of the App
 
-<img src="">
+<img src="https://github.com/SharonneKemboi/Atarank/blob/master/images/Screenshot%20from%202022-06-13%2017-37-30.png">
 
 
 
