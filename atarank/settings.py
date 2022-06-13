@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import django_heroku
+import dj_database_url
+from decouple import config,Csv
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
@@ -19,16 +22,23 @@ import cloudinary.api
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+
+MODE=config("MODE", default="dev")
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = os.environ.get('DEBUG', True)
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '@l7h!8r#bx&htwc7qx6mo7#clkn0*f#4^iu1zh^y*i*3ya7(wv'
+# SECRET_KEY = '@l7h!8r#bx&htwc7qx6mo7#clkn0*f#4^iu1zh^y*i*3ya7(wv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -57,6 +67,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'atarank.urls'
@@ -86,11 +97,14 @@ WSGI_APPLICATION = 'atarank.wsgi.application'
 DATABASES = {
      'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'atarank',
-        'USER': 'postgres',
-    'PASSWORD':'Atara',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD':config('DB_PASSWORD'),
     }
 }
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -127,7 +141,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
@@ -139,3 +155,13 @@ cloudinary.config(
   api_key = "752266243846236", 
   api_secret = "_3On6b0yuNU3Viqoc6dqjLCtM_s" 
 )
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': "dyekraqxm", 
+    'API_KEY': "752266243846236", 
+    'API_SECRET': "_3On6b0yuNU3Viqoc6dqjLCtM_s" 
+}
+
+# Configure Django App for Heroku.
+django_heroku.settings(locals()) 
