@@ -119,12 +119,16 @@ def review_project(request,id):
             content_review=content_review,
             avg_review=round((float(design_review)+float(usability_review)+float(content_review))/3,2),
         )
+
+        
         return render(request,'project_details.html',{"project":project})
 
     else:
         project = Project.objects.get(id=id)
 
         return render(request,'project_details.html',{"project":project})
+
+
 
 
 
