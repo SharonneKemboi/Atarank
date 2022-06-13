@@ -27,14 +27,14 @@
               <p>"A" class Project Ranker and Reviewer</p>
 
               <br><br>
-                <h4 class="text-warning"><u>DESIGN</u>  &nbsp; <u>CONTENT</u> &nbsp;<u>USABILITY</u></h4>
+                <h4 class="text-success" style="font-weight:900;">DESIGN  || &nbsp; CONTENT ||  &nbsp;USABILITY </h4>
           </div>
       </div>
 
   </div>
   </div>
 
-  <h2 class="text-center" id="myproject-title">Atarank Awards...</h2>
+  <h2 class="text-center" id="myproject-title">Atarank Projects</h2>
  
 
     <div class="container-fluid">
@@ -42,17 +42,17 @@
             {% for proj in myproj %}
             <div class="col-md-4 " >
               <div class="card-group" >
-                <div class="card"  style="border:2px solid #0c0c0c; margin:5px; ">
-                  <a href="{% url 'project_details' proj.id %}">
-                   
-                  <img class="card-img-top" src="{{proj.image.url}}" alt="Card image cap" height="300" width="300"/>
-                 </a>
+                <div class="card mt-4"  style="border:2px solid #0c0c0c; margin:5px; ">
+                  
+                 <a href="{% url 'project_details' proj.id %}"><img class="card-img-top" src="{{proj.image.url}}" alt="Card image cap" height="300" width="300"/>
+                  <button class="btn btn-success">Review App</button> </a>
+                 
                   <div class="card-body">
                   <h5 class="card-title text-center"><b>Name: </b>{{proj.name}}</h5>
                   <p class="card-text text-center"><b>Description:</b>{{proj.description}}</p>
 
 
-                  <a href="{{proj.link}}" class="btn btn-info btn-centered">Go to Repo</a>
+                  <a href="{{proj.link}}" class="btn btn-info btn-centered bg-success">Live Site</a>
                 </div>
                 <div class="card-footer">
                   <small class="text-muted"><b>Date Posted:{{proj.date}}</b></small>

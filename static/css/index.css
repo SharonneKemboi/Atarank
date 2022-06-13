@@ -1,22 +1,86 @@
 * {
     scroll-behavior: smooth;
     font-family: 'Gabriela';
-    overflow-x: hidden;
+    margin:0;
+    padding: 0;
+    
 }
 body{
-    background-color: #000000;
-    background: url('/images/—Pngtree—abstract\ metallic\ blue\ black\ frame_1155756.png');   
+    background-color: #3c3a3a;
+    background-image: url('https://media.istockphoto.com/photos/cement-floor-and-black-wall-backgrounds-empty-room-interior-use-for-picture-id1226232663?k=20&m=1226232663&s=612x612&w=0&h=vIjeJxN1qRTIyjUNJOzOsH3hgmHU04bZsi7WV4qUCxY=');
+    background-repeat: no-repeat;
+    background-size:cover;
 }
-
-nav {
-    background: rgb(45, 2, 38);
-    margin-bottom: 2rem;
-    border: none;
-    transition: background 0.9s
-}
-
 
 
 h2{
     color:rgb(229, 240, 228);
+}
+
+.load{
+    animation: slide 1s;
+}
+
+
+.slider{
+    height: 75vh;
+    background-repeat:no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    animation:slide 15s infinite;
+    align-items: center;
+}
+.content{
+    color: #ffff;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+.principal{
+    left: 50%;
+    top:50% ;
+    transform: translate(-50%,-50%) ;
+    position: absolute;
+    letter-spacing: 4px;
+    text-align: center;
+
+}
+.principal h3{
+    font-size: 35px;
+
+}
+.principal p{
+    font-size:15px;
+}
+@keyframes slide{
+    0%{
+        background-image: url("https://cdn.pixabay.com/photo/2018/05/14/16/54/cyber-3400789_960_720.jpg");
+
+    }
+    80%{
+        background-image: url("https://cdn.pixabay.com/photo/2017/08/17/02/47/dna-2649850_960_720.jpg");
+
+    }
+}
+
+#myproject-title{
+    font-size:3vw;
+    color:rgb(255, 249, 249);
+}
+
+
+#profile-text{
+    color:#FFFF;
+}    
+
+
+.first{
+    margin-left: 22vw;
+    margin-top: -8vh;
+    
+}
+
+h3{
+    color:#FFFF;  
 }
